@@ -3057,26 +3057,4 @@ ol {
 	}
 }
 
-/* CSS to hide the menu by default */
-#mobileMenu {
-	display: none;
-}
-
-/* Add your styles for the menu here */
-/* For example: */
-#mobileMenu ul {
-	list-style: none;
-	padding: 0;
-}
-
-#mobileMenu li {
-	margin-bottom: 10px;
-}
-
-#mobileMenu a {
-	text-decoration: none;
-	color: #000;
-	/* Change the color to your preference */
-}
-
 /*# sourceMappingURL=style.css.map */

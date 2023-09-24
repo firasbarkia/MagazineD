@@ -48,7 +48,7 @@ urlpatterns = [
     path('delete_product/<int:product_id>/',
          views.delete_product, name='delete_product'),
     
-        path('under_development/', views.under_development, name='under_development'),
+
     # path('change_password/', PasswordChangeView.as_view(), name='change_password'),
 
 

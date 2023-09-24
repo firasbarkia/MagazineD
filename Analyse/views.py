@@ -21,7 +21,9 @@ def is_subscriber(user):
 def is_authenticated(user):
     return user.is_authenticated
 
-
+@user_passes_test(
+    lambda u: is_subscriber(u) and is_authenticated(u), login_url="subscription"
+)
 def tracker_bar_view(request):
     # Set the default cryptocurrency symbol to BTCUSD
     symbol = "CRYPTOCAP:BTC"
@@ -34,14 +36,13 @@ def tracker_bar_view(request):
         "symbol": symbol,
     }
     return render(request, "analyses/analyses.html", context)
-@user_passes_test(
-    lambda u: is_subscriber(u) and is_authenticated(u), login_url="subscription"
-)
+
+
 def currencies(request):
     labels = []
     data = []
 
-    with open("currency_scraper/currencies.csv", "r") as file:
+    with open("C:/Users/MSI/Desktop/Magazine-main/Athena/currency_scraper/currencies.csv", "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
             labels.append(row["Name"])
@@ -50,7 +51,7 @@ def currencies(request):
         currencies = list(reader)
         currencies = []
     # Path to the CSV file
-    csv_path = "currency_scraper/currencies.csv"
+    csv_path = "C:/Users/MSI/Desktop/Magazine-main/Athena/currency_scraper/currencies.csv"
 
     # Read the CSV file and store data in a list of dictionaries
     currencies = []
@@ -61,7 +62,7 @@ def currencies(request):
     labels1 = []
     data1 = []
 
-    with open("currency_scraper/currencies.csv", "r") as file:
+    with open("C:/Users/MSI/Desktop/Magazine-main/Athena/currency_scraper/currencies.csv", "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
             labels1.append(row["Name"])
@@ -84,9 +85,6 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
-@user_passes_test(
-    lambda u: is_subscriber(u) and is_authenticated(u), login_url="subscription"
-)
 def crypto_data_view(request):
     # File path of the CSV file
     filename = "scrapping/coingecko_data.csv"  # Replace with the actual path to your CSV file
@@ -98,7 +96,7 @@ def crypto_data_view(request):
     headers = df.columns.tolist()
     data = df.values.tolist()
     
-    directory = 'AnalyseScrapp/clean'
+    directory = 'C:/Users/MSI/Desktop/Magazine-main/Analyse/clean'
 
     results = []
 
@@ -168,9 +166,6 @@ def crypto_data_view(request):
     return render(request, 'analyses/crypto_data.html', context)
 
 #=======================**********************Stocks Views******************************================================================#
-@user_passes_test(
-    lambda u: is_subscriber(u) and is_authenticated(u), login_url="subscription"
-)
 def stocks_list(request):
     currencies = []
     with open("combined_output.csv", "r") as file:

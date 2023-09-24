@@ -242,8 +242,7 @@ def is_subscriber(user):
 @login_required
 def product(request):
     products = Product.objects.filter(owner=request.user)
-    return redirect('under_development')
-    #return render(request, 'dashboard/Product/Product.html', {'products': products})
+    return render(request, 'dashboard/Product/Product.html', {'products': products})
 
 
 
@@ -259,12 +258,10 @@ def add_product(request):
             if request.FILES.get('image'):
                 product.image = request.FILES['image']
             product.save()
-            return redirect('under_development')
-            #return redirect('main')
+            return redirect('main')
     else:
         form = ProductForm()
-    return redirect('under_development')
-    #return render(request, 'dashboard/Product/add_product.html', {'form': form})
+    return render(request, 'dashboard/Product/add_product.html', {'form': form})
 
 
 
@@ -285,11 +282,10 @@ def update_product(request, product_id):
             return redirect('main')
         else:
             form = ProductForm(instance=product)
-        return redirect('under_development')
-        #return render(request, 'dashboard/Product/update_produit.html', {'form': form, 'product': product})
+
+        return render(request, 'dashboard/Product/update_produit.html', {'form': form, 'product': product})
     else:
-        return redirect('under_development')
-        #return redirect('dashbord')
+        return redirect('dashbord')
 
 
 @login_required
@@ -300,23 +296,16 @@ def delete_product(request, product_id):
         if request.method == 'POST':
             product.delete()
             return redirect('main')
-        return redirect('under_development')
-        #return render(request, 'dashboard/Product/delete_produit.html', {'product': product})
+
+        return render(request, 'dashboard/Product/delete_produit.html', {'product': product})
     else:
-        return redirect('under_development')
-        #return redirect('dashboard')
+        return redirect('dashboard')
 @login_required
 def user_orders(request):
     orders = Orders.objects.filter(user=request.user)
-    return redirect('under_development')
-    #return render(request, 'dashboard/Product/user_orders.html', {'orders': orders})
+    return render(request, 'dashboard/Product/user_orders.html', {'orders': orders})
 
 
-#========================UNder Development==================================#
-
-
-def under_development(request):
-    return render(request, 'dashboard/Product/under_development.html')
 
 #------------------------------------------------------------------------------------------------------  search  ------------------------------------------------------------------------------------------------------#
 @login_required
