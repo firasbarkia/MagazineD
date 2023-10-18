@@ -238,7 +238,7 @@ def is_subscriber(user):
     return user.groups.filter(name='Subscriber').exists()
 
 # Décorer la vue "product" avec le décorateur "user_passes_test"
-@user_passes_test(is_subscriber, login_url='subscription')
+#@user_passes_test(is_subscriber, login_url='subscription')
 @login_required
 def product(request):
     products = Product.objects.filter(owner=request.user)
